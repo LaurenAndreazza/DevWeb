@@ -1,66 +1,208 @@
+/* =============================================
+Boa noite, Professor! Este é meu HTML.
+Pedi para a IA resumir o funcionamento de cada TAG para facilitar a leitura
+Qualquer dúvida estou a disposição. Ass: Lauren Andreazza
+============================================= */
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página - Dev Web</title>
+    <title>Exercícios Dev Web</title>
+    <meta name="description" content="Portfólio de exercícios de Desenvolvimento Web.">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <header class="header-outer">
         <div class="header-inner responsive-wrapper">
+            <a href="#" class="header-logo">
+                <span class="logo-bracket">&lt;</span>DevWeb<span class="logo-bracket">/&gt;</span>
+            </a>
             <nav class="header-navigation">
                 <ol>
                     <li><a href="https://www.linkedin.com/in/lauren-andreazza/?originalSubdomain=br">Lauren
                             Andreazza</a></li>
                     <li><a href="https://pierrevelozo.com/">Henrique Pierre Velozo</a></li>
-                    <li><a href="https://www.linkedin.com/in/eduarda-palmeiro-bruck-da-silva-023674389/">Maria Eduarda
-                        </a></li>
-                    <li><a href="https://www.linkedin.com/in/taylor-cassimiro/">Taylor Cassimiro </a></li>
+                    <li><a href="https://www.linkedin.com/in/eduarda-palmeiro-bruck-da-silva-023674389/">Maria
+                            Eduarda</a></li>
+                    <li><a href="https://www.linkedin.com/in/taylor-cassimiro/">Taylor Cassimiro</a></li>
                     <li><a href="https://www.linkedin.com/in/andrius-anselmi/">Andrius Anselmi</a></li>
                     <li><a href="E-mails.html">E-mails</a></li>
-
                 </ol>
             </nav>
         </div>
     </header>
 
-    <main>
-        <form method="post" action="https://elgio.prof.nom.br/web/le/">
-            <label for="nome">Nome Completo:</label>
-            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo">
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" placeholder="Digite seu e-mail">
-            <label for="Senha">Senha:</label>
-            <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
-            <p class="radio-title">Localidade:</p>
-            <div class="radio-group">
-                <div class="radio-option">
-                    <input type="radio" id="poa" name="localidade" value="Porto Alegre">
-                    <label for="poa">Porto Alegre</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" id="canoas" name="localidade" value="Canoas">
-                    <label for="canoas">Canoas</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" id="gravatai" name="localidade" value="Gravataí">
-                    <label for="gravatai">Gravataí</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" id="Nova_Santa_Rita" name="localidade" value="Nova Santa Rita">
-                    <label for="Nova_Santa_Rita">Nova Santa Rita</label>
-                </div>
+    <main class="responsive-wrapper">
+
+        <section class="hero">
+            <div class="hero-badge">Portfólio</div>
+            <h1 class="hero-title">Exercícios de <span class="highlight">Desenvolvimento Web</span></h1>
+            <p class="hero-subtitle">Fundamentos de HTML, XHTML e XML explorados e explicados com minhas próprias
+                palavras.</p>
+            <div class="hero-chips">
+                <span class="chip">HTML</span>
+                <span class="chip">XHTML</span>
+                <span class="chip">XML</span>
+                <span class="chip">Formulários</span>
             </div>
-            <label for="mensagem">Mensagem:</label>
-            <textarea id="mensagem" name="mensagem" rows="4" cols="50" placeholder="Digite sua mensagem"></textarea>
-            <button type="submit">Enviar</button>
-        </form>
+        </section>
+
+        <section class="exercise-block" id="exercicio-2">
+            <header class="exercise-header">
+                <span class="exercise-number">02</span>
+                <div>
+                    <h2 class="exercise-title">Perguntas Teóricas</h2>
+                    <p class="exercise-desc">Conceitos fundamentais sobre linguagens de marcação</p>
+                </div>
+            </header>
+
+            <div class="cards-grid">
+
+                <article class="card">
+                    <div class="card-tag">HTML</div>
+                    <h3>O que é Hypertext Markup Language (HTML)?</h3>
+                    <p>O HTML é, basicamente, o "esqueleto" de qualquer página na internet. Ele não é uma linguagem de
+                        programação (não tem lógica, variáveis ou loops), mas sim uma <strong>linguagem de
+                            marcação</strong>.
+                        Nós usamos "tags" como <code>&lt;h1&gt;</code> ou <code>&lt;p&gt;</code> para dizer ao navegador
+                        o que é cada parte do conteúdo: título, parágrafo, imagem, link, etc.</p>
+                </article>
+
+                <article class="card">
+                    <div class="card-tag">História</div>
+                    <h3>Como e por quê surgiu o HTML?</h3>
+                    <p>O HTML foi criado no início dos anos 90 por <strong>Tim Berners-Lee</strong>, enquanto trabalhava
+                        no CERN (Organização Europeia para a Pesquisa Nuclear).</p>
+                    <div class="card-list">
+                        <div class="card-list-item">
+                            <span class="list-icon">❓</span>
+                            <span><strong>Por quê?</strong> Cientistas precisavam compartilhar documentos de pesquisa
+                                entre computadores e sistemas diferentes.</span>
+                        </div>
+                        <div class="card-list-item">
+                            <span class="list-icon">💡</span>
+                            <span><strong>Como?</strong> A junção do texto com o "Hipertexto" criou uma teia de
+                                informações interligadas — a World Wide Web.</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-tag">XHTML</div>
+                    <h3>O que é eXtensible Hypertext Markup Language (XHTML)?</h3>
+                    <p>O XHTML é o HTML reescrito seguindo as regras rígidas do XML. Foi uma iniciativa da
+                        <strong>W3C</strong>
+                        para organizar o código da web no início dos anos 2000, exigindo que os desenvolvedores
+                        escrevessem código muito mais limpo e rigoroso.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-tag">Diferença</div>
+                    <h3>Qual a diferença de XHTML para HTML?</h3>
+                    <p>A palavra-chave é <strong>rigor</strong>. O HTML tradicional era permissivo — esqueceu de fechar
+                        uma tag? O navegador resolvia. O XHTML não perdoa:</p>
+                    <ul class="styled-list">
+                        <li>Todas as tags devem obrigatoriamente ser fechadas (ex: <code>&lt;br /&gt;</code>).</li>
+                        <li>Tudo deve ser escrito em letras <strong>minúsculas</strong>.</li>
+                        <li>Atributos devem estar sempre entre <strong>aspas</strong>.</li>
+                        <li>A estrutura deve ser perfeitamente <strong>aninhada</strong>.</li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <div class="card-tag">XML</div>
+                    <h3>O que é eXtensible Markup Language (XML)?</h3>
+                    <p>O XML é uma linguagem de marcação com objetivo totalmente diferente do HTML. Em vez de
+                        <strong>exibir</strong> informações, ele foi criado para <strong>armazenar e transportar
+                            dados</strong>.
+                        Você mesmo inventa as tags: <code>&lt;aluno&gt;</code>, <code>&lt;nota&gt;</code>,
+                        <code>&lt;curso&gt;</code> — sem regras predefinidas.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-tag">Comparativo</div>
+                    <h3>Qual a diferença de HTML para XML?</h3>
+                    <p>A diferença principal está no <strong>foco</strong> de cada linguagem:</p>
+                    <ul class="styled-list">
+                        <li><strong>HTML</strong> — feito para <strong>exibir dados</strong>. Tags fixas como
+                            <code>&lt;div&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;img&gt;</code>.
+                        </li>
+                        <li><strong>XML</strong> — feito para <strong>descrever e transportar dados</strong>. Você
+                            tem liberdade total para criar as próprias tags.</li>
+                    </ul>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="exercise-block" id="exercicio-3">
+            <header class="exercise-header">
+                <span class="exercise-number">03</span>
+                <div>
+                    <h2 class="exercise-title">Formulário</h2>
+                    <p class="exercise-desc">Entrada de dados com campos de texto, senha, radio buttons e textarea</p>
+                </div>
+            </header>
+
+            <form method="post" action="https://elgio.prof.nom.br/web/le/">
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail">
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+                </div>
+
+                <div class="form-group">
+                    <p class="radio-title">Localidade</p>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="poa" name="localidade" value="Porto Alegre">
+                            <label for="poa">Porto Alegre</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="canoas" name="localidade" value="Canoas">
+                            <label for="canoas">Canoas</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="gravatai" name="localidade" value="Gravataí">
+                            <label for="gravatai">Gravataí</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="Nova_Santa_Rita" name="localidade" value="Nova Santa Rita">
+                            <label for="Nova_Santa_Rita">Nova Santa Rita</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" rows="4" cols="50"
+                        placeholder="Digite sua mensagem"></textarea>
+                </div>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
     </main>
 
-    <footer></footer>
+    <footer class="site-footer">
+        <div class="responsive-wrapper">
+            <p>Feito com ❤️ durante o curso de Desenvolvimento Web</p>
+        </div>
+    </footer>
 
 </body>
 

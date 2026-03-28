@@ -1,270 +1,973 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+/* =============================================
+    Boa noite, Professor! Este é meu CSS.
+    Pedi para a IA resumir o funcionamento de cada TAG para facilitar a leitura
+    Qualquer dúvida estou a disposição. Ass: Lauren Andreazza
+   ============================================= */
 
+
+/* Importa a fonte DM Sans do Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap");
+
+/* =============================================
+   RESET UNIVERSAL
+   Aplica em todos os elementos (*), incluindo
+   os pseudo-elementos ::before e ::after
+   ============================================= */
 *,
-*:after,
-*:before {
-	box-sizing: border-box;
+*::after,
+*::before {
+    box-sizing: border-box;
+    /* padding e border não aumentam o tamanho do elemento */
+    margin: 0;
+    /* remove margens padrão do navegador */
+    padding: 0;
+    /* remove espaçamentos internos padrão do navegador */
 }
 
+/* =============================================
+   MÉTODO DE VARIÁVEIS NO CSS
+   Declaradas em :root, ficam disponíveis
+   em todo o arquivo via var(--nome)
+   ============================================= */
 :root {
-	--header-outer-height: 110px;
-	--header-inner-height: 70px;
-	--header-height-difference: calc(var(--header-outer-height) - var(--header-inner-height));
-	--header-bg: #fff;
+    --header-outer-height: 70px;
+    /* altura total do header */
+    --header-inner-height: 70px;
+    /* altura do conteúdo interno do header */
+    --header-height-difference: calc(var(--header-outer-height) - var(--header-inner-height));
+    /* diferença calculada automaticamente */
+    --header-bg: #ffffff;
+    /* cor de fundo do header */
+
+    /* Paleta de cores */
+    --color-bg: #f4f6fb;
+    /* cor de fundo da página (cinza azulado suave) */
+    --color-surface: #ffffff;
+    /* cor de fundo de cards e formulários */
+    --color-primary: #4f46e5;
+    /* roxo principal — usado em botões, links, destaques */
+    --color-primary-light: #ede9fe;
+    /* versão clara do roxo — usado em badges e fundos sutis */
+    --color-primary-dark: #3730a3;
+    /* versão escura do roxo — usado no gradiente do botão */
+    --color-accent: #06b6d4;
+    /* ciano — usado nos colchetes do logo e detalhes */
+    --color-text: #1e1b4b;
+    /* cor principal do texto (quase preto azulado) */
+    --color-text-muted: #6b7280;
+    /* cor de texto secundário (cinza) */
+    --color-border: #e5e7eb;
+    /* cor das bordas dos cards e inputs */
+    --color-code-bg: #ede9fe;
+    /* fundo do elemento <code> */
+    --color-code-text: #4f46e5;
+    /* cor do texto dentro do <code> */
+
+    /* Sombras */
+    --shadow-sm: 0 1px 3px rgba(79, 70, 229, 0.08);
+    /* sombra leve (estado normal dos cards) */
+    --shadow-md: 0 4px 16px rgba(79, 70, 229, 0.12);
+    /* sombra média (hover dos cards) */
+    --shadow-lg: 0 12px 40px rgba(79, 70, 229, 0.16);
+    /* sombra forte (elementos em destaque) */
+
+    /* Arredondamento */
+    --radius-sm: 6px;
+    /* bordas levemente arredondadas (inputs, botão) */
+    --radius-md: 12px;
+    /* arredondamento médio (cards menores) */
+    --radius-lg: 20px;
+    /* arredondamento grande (cards principais, form) */
+
+    --transition: 0.25s ease;
+    /* duração e curva padrão das animações */
 }
 
+/* =============================================
+   HTML
+   ============================================= */
+html {
+    scroll-behavior: smooth;
+    /* faz a página rolar suavemente ao clicar em âncoras (#link) */
+}
+
+/* =============================================
+   BODY — estilos base herdados por tudo
+   ============================================= */
 body {
-	font-family: "DM Sans", sans-serif;
-	background-color: #f2f5f7;
-	line-height: 1.5;
-	min-height: 300vh;
-	position: relative;
+    font-family: "DM Sans", sans-serif;
+    /* aplica a fonte importada em todo o site */
+    background-color: var(--color-bg);
+    /* cor de fundo da página inteira */
+    color: var(--color-text);
+    /* cor padrão de todo texto */
+    line-height: 1.65;
+    /* espaçamento entre linhas (1.65× o tamanho da fonte) */
+    -webkit-font-smoothing: antialiased;
+    /* suaviza as bordas das letras no Mac/Safari */
 }
 
+/* =============================================
+   CONTAINER CENTRALIZADO
+   Usado no header e no main para limitar
+   a largura e centralizar o conteúdo
+   ============================================= */
 .responsive-wrapper {
-	width: 90%;
-	max-width: 1280px;
-	margin-left: auto;
-	margin-right: auto;
+    width: 90%;
+    /* ocupa 90% da largura — 5% de respiro em cada lado */
+    max-width: 1100px;
+    /* em telas grandes, para de crescer além de 1100px */
+    margin-left: auto;
+    /* centraliza horizontalmente (junto com margin-right: auto) */
+    margin-right: auto;
+    /* centraliza horizontalmente */
 }
 
+/* =============================================
+   HEADER EXTERNO — barra de topo
+   ============================================= */
 .header-outer {
-
-	height: var(--header-outer-height);
-	position: sticky;
-	top: calc(var(--header-height-difference) * -1);
-	display: flex;
-	align-items: center;
-
-	background-color: var(--header-bg);
-	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+    height: var(--header-outer-height);
+    /* altura definida pela variável */
+    position: sticky;
+    /* gruda no topo ao rolar a página */
+    top: 0;
+    /* posição onde ele para de rolar */
+    z-index: 100;
+    /* fica na frente de todos os outros elementos */
+    display: flex;
+    /* ativa flexbox para alinhar o conteúdo */
+    align-items: center;
+    /* centraliza verticalmente */
+    background-color: rgba(255, 255, 255, 0.85);
+    /* branco com 15% de transparência */
+    backdrop-filter: blur(12px);
+    /* desfoca o conteúdo atrás (efeito vidro fosco) */
+    -webkit-backdrop-filter: blur(12px);
+    /* mesma coisa — compatibilidade com Safari */
+    border-bottom: 1px solid var(--color-border);
+    /* linha sutil na base do header */
+    box-shadow: var(--shadow-sm);
+    /* sombra leve para separar do conteúdo */
 }
 
+/* =============================================
+   HEADER INTERNO — alinha logo e nav
+   ============================================= */
 .header-inner {
-	height: var(--header-inner-height);
-	position: sticky;
-	top: 0;
-
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+    height: var(--header-inner-height);
+    /* mesma altura do header externo */
+    display: flex;
+    /* ativa flexbox */
+    align-items: center;
+    /* alinha logo e nav verticalmente */
+    justify-content: space-between;
+    /* logo à esquerda, navegação à direita */
+    gap: 1.5rem;
+    /* espaço mínimo entre logo e nav */
 }
 
+/* =============================================
+   LOGO
+   ============================================= */
+.header-logo {
+    font-size: 1.25rem;
+    /* tamanho do texto do logo */
+    font-weight: 700;
+    /* negrito forte */
+    color: var(--color-primary);
+    /* cor roxa principal */
+    text-decoration: none;
+    /* remove o sublinhado de link */
+    letter-spacing: -0.5px;
+    /* aperta levemente o espaçamento entre letras */
+    flex-shrink: 0;
+    /* impede o logo de encolher quando o espaço aperta */
+}
+
+.logo-bracket {
+    color: var(--color-accent);
+    /* os colchetes </ > ficam em ciano */
+}
+
+/* =============================================
+   NAVEGAÇÃO DO HEADER
+   ============================================= */
 .header-navigation {
-	display: flex;
-	flex-wrap: wrap;
+    display: flex;
+    /* ativa flexbox */
+    align-items: center;
+    /* alinha verticalmente */
 }
 
 .header-navigation ol {
-	display: flex;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-.header-navigation a,
-.header-navigation button {
-	font-size: 1.125rem;
-	color: inherit;
-	margin-left: 1.75rem;
-	position: relative;
-	font-weight: 500;
+    display: flex;
+    /* coloca os itens da lista em linha */
+    flex-wrap: wrap;
+    /* permite quebrar linha se não couber */
+    list-style: none;
+    /* remove os números da lista ordenada */
+    gap: 0.25rem;
+    /* pequeno espaço entre os itens */
 }
 
 .header-navigation a {
-	display: none;
-	font-size: 1.125rem;
-	color: inherit;
-	text-decoration: none;
+    display: none;
+    /* escondido por padrão (telas pequenas) */
+    font-size: 0.875rem;
+    /* tamanho menor que o texto normal */
+    font-weight: 500;
+    /* peso médio */
+    color: var(--color-text-muted);
+    /* cinza — menos destaque que o logo */
+    text-decoration: none;
+    /* sem sublinhado */
+    padding: 0.35rem 0.75rem;
+    /* espaçamento interno (vertical horizontal) */
+    border-radius: var(--radius-sm);
+    /* bordas arredondadas ao hover */
+    transition: background-color var(--transition), color var(--transition);
+    /* anima cor e fundo */
 }
 
-.header-navigation button {
-	border: 0;
-	background-color: transparent;
-	padding: 0;
+/* Hover no link da navegação */
+.header-navigation a:hover {
+    background-color: var(--color-primary-light);
+    /* fundo roxo claro ao passar o mouse */
+    color: var(--color-primary);
+    /* texto roxo ao passar o mouse */
 }
 
-.header-navigation a:hover:after,
-.header-navigation button:hover:after {
-	transform: scalex(1);
-}
-
-.header-navigation a:after,
-.header-navigation button:after {
-	transition: 0.25s ease;
-	content: "";
-	display: block;
-	width: 100%;
-	height: 2px;
-	background-color: currentcolor;
-	transform: scalex(0);
-	position: absolute;
-	bottom: -2px;
-	left: 0;
-}
-
-.main {
-	margin-top: 3rem;
-}
-
-.widget {
-	width: 100%;
-	max-width: 600px;
-	border-radius: 8px;
-	box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.1);
-	background-color: #fff;
-	padding: 2.5rem;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 2rem;
-	font-size: 1.125rem;
-}
-
-.widget>*+* {
-	margin-top: 1.25em;
-}
-
-.widget h2 {
-	font-size: 1.5rem;
-	font-weight: 700;
-	line-height: 1.25;
-}
-
-.widget code {
-	display: inline-block;
-	padding: 0.125em 0.25em;
-	border-radius: 2px;
-	background-color: #bee5d3;
-}
-
-.widget strong {
-	font-weight: 700;
-}
-
+/* Exibe os links apenas em telas com 800px ou mais */
 @media (min-width: 800px) {
-	.header-navigation a {
-		display: inline-block;
-	}
-
-	.header-navigation button {
-		display: none;
-	}
+    .header-navigation a {
+        display: inline-block;
+        /* mostra o link em tela grande */
+    }
 }
 
-.email-list {
-	list-style: none;
-	padding: 0;
+/* =============================================
+   MAIN
+   ============================================= */
+main {
+    padding-top: 3rem;
+    /* espaço do topo (abaixo do header) */
+    padding-bottom: 4rem;
+    /* espaço no final da página */
+    display: flex;
+    /* ativa flexbox */
+    flex-direction: column;
+    /* empilha as seções verticalmente */
+    gap: 4rem;
+    /* espaço entre hero, exercício 2 e exercício 3 */
 }
 
-.email-list li {
-	margin-bottom: 0.5rem;
+/* =============================================
+   HERO — seção de boas-vindas
+   ============================================= */
+.hero {
+    text-align: center;
+    /* centraliza todo o texto */
+    padding: 3rem 1rem;
+    /* espaçamento interno (vertical horizontal) */
 }
 
-.email-list a {
-	color: #007bff;
-	text-decoration: none;
-	font-weight: 500;
+.hero-badge {
+    display: inline-block;
+    /* não ocupa a linha toda — fica do tamanho do texto */
+    background-color: var(--color-primary-light);
+    /* fundo roxo claro */
+    color: var(--color-primary);
+    /* texto roxo */
+    font-size: 0.8rem;
+    /* texto pequeno */
+    font-weight: 700;
+    /* negrito */
+    letter-spacing: 0.08em;
+    /* espaçamento entre letras (efeito uppercase) */
+    text-transform: uppercase;
+    /* transforma o texto em maiúsculas */
+    padding: 0.3rem 1rem;
+    /* espaçamento interno */
+    border-radius: 100px;
+    /* deixa completamente oval (pílula) */
+    margin-bottom: 1.25rem;
+    /* espaço abaixo do badge */
 }
 
-.email-list a:hover {
-	text-decoration: underline;
+.hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    /* responsivo: mín 2rem, cresce com a tela, máx 3.5rem */
+    font-weight: 700;
+    /* negrito forte */
+    line-height: 1.15;
+    /* linhas mais juntas para títulos grandes */
+    letter-spacing: -1px;
+    /* letras levemente mais juntas */
+    margin-bottom: 1rem;
+    /* espaço abaixo do título */
+    color: var(--color-text);
+    /* cor principal do texto */
 }
 
-/* Form Styles */
+.hero-title .highlight {
+    color: var(--color-primary);
+    /* palavra em destaque fica roxa */
+    position: relative;
+    /* base para possíveis pseudo-elementos futuros */
+}
+
+.hero-subtitle {
+    font-size: 1.125rem;
+    /* um pouco maior que o texto normal */
+    color: var(--color-text-muted);
+    /* cinza — texto menos importante */
+    max-width: 520px;
+    /* limita a largura para não ficar muito longo */
+    margin: 0 auto 1.75rem;
+    /* centraliza e adiciona espaço abaixo */
+}
+
+.hero-chips {
+    display: flex;
+    /* coloca os chips em linha */
+    justify-content: center;
+    /* centraliza horizontalmente */
+    flex-wrap: wrap;
+    /* quebra linha se não couber */
+    gap: 0.5rem;
+    /* espaço entre os chips */
+}
+
+.chip {
+    background-color: var(--color-surface);
+    /* fundo branco */
+    border: 1px solid var(--color-border);
+    /* borda cinza sutil */
+    color: var(--color-text-muted);
+    /* texto cinza */
+    font-size: 0.8rem;
+    /* texto pequeno */
+    font-weight: 500;
+    /* peso médio */
+    padding: 0.3rem 0.9rem;
+    /* espaçamento interno */
+    border-radius: 100px;
+    /* formato oval (pílula) */
+}
+
+/* =============================================
+   BLOCO DE EXERCÍCIO
+   ============================================= */
+.exercise-block {
+    display: flex;
+    /* ativa flexbox */
+    flex-direction: column;
+    /* empilha header e cards verticalmente */
+    gap: 2rem;
+    /* espaço entre o cabeçalho e os cards */
+}
+
+.exercise-header {
+    display: flex;
+    /* coloca número e texto lado a lado */
+    align-items: center;
+    /* alinha verticalmente */
+    gap: 1.25rem;
+    /* espaço entre o número e o texto */
+}
+
+.exercise-number {
+    font-size: 3.5rem;
+    /* número grande decorativo */
+    font-weight: 700;
+    /* negrito */
+    line-height: 1;
+    /* sem espaçamento extra de linha */
+    color: var(--color-primary-light);
+    /* roxo bem claro — decorativo, não chama atenção */
+    letter-spacing: -2px;
+    /* letras bem juntas para números grandes */
+    flex-shrink: 0;
+    /* não deixa o número encolher */
+    user-select: none;
+    /* impede o usuário de selecionar o número com o mouse */
+}
+
+.exercise-title {
+    font-size: 1.75rem;
+    /* tamanho do título do exercício */
+    font-weight: 700;
+    /* negrito */
+    color: var(--color-text);
+    /* cor principal */
+    line-height: 1.2;
+    /* espaçamento de linha compacto */
+}
+
+.exercise-desc {
+    font-size: 0.9375rem;
+    /* um pouco menor que o texto normal */
+    color: var(--color-text-muted);
+    /* cinza — texto secundário */
+    margin-top: 0.2rem;
+    /* pequeno espaço acima */
+}
+
+/* =============================================
+   GRADE DE CARDS — CSS Grid
+   ============================================= */
+.cards-grid {
+    display: grid;
+    /* ativa o CSS Grid */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    /* auto-fill = cria quantas colunas couberem na tela          */
+    /* minmax(320px, 1fr) = cada coluna tem no mínimo 320px       */
+    /*   e divide o espaço restante igualmente (1fr)              */
+    /* Resultado: 3 colunas em tela grande, 2 em média, 1 em móvel */
+    gap: 1.25rem;
+    /* espaço entre todos os cards (horizontal e vertical) */
+}
+
+/* =============================================
+   CARD
+   ============================================= */
+.card {
+    background-color: var(--color-surface);
+    /* fundo branco */
+    border: 1px solid var(--color-border);
+    /* borda cinza sutil */
+    border-radius: var(--radius-lg);
+    /* cantos bem arredondados */
+    padding: 1.75rem;
+    /* espaçamento interno */
+    display: flex;
+    /* ativa flexbox para o conteúdo interno */
+    flex-direction: column;
+    /* empilha tag, título, texto, lista */
+    gap: 0.85rem;
+    /* espaço entre os elementos do card */
+    box-shadow: var(--shadow-sm);
+    /* sombra leve no estado normal */
+    transition: box-shadow var(--transition), transform var(--transition);
+    /* prepara a animação do hover */
+}
+
+/* Animação ao passar o mouse no card */
+.card:hover {
+    box-shadow: var(--shadow-md);
+    /* sombra mais intensa — sensação de elevação */
+    transform: translateY(-3px);
+    /* move o card 3px para cima */
+}
+
+/* Variação de card que ocupa a linha toda no grid */
+.card--wide {
+    grid-column: 1 / -1;
+    /* começa na coluna 1 e vai até o final (-1) */
+}
+
+/* Badge colorida no topo do card */
+.card-tag {
+    display: inline-block;
+    /* só ocupa o espaço do texto */
+    align-self: flex-start;
+    /* não estica para a largura do card */
+    background-color: var(--color-primary-light);
+    /* fundo roxo claro */
+    color: var(--color-primary);
+    /* texto roxo */
+    font-size: 0.72rem;
+    /* texto bem pequeno */
+    font-weight: 700;
+    /* negrito */
+    text-transform: uppercase;
+    /* maiúsculas */
+    letter-spacing: 0.08em;
+    /* espaçamento entre letras */
+    padding: 0.2rem 0.75rem;
+    /* espaçamento interno compacto */
+    border-radius: 100px;
+    /* formato oval */
+}
+
+.card h3 {
+    font-size: 1.05rem;
+    /* tamanho do título do card */
+    font-weight: 700;
+    /* negrito */
+    color: var(--color-text);
+    /* cor principal (quase preto) */
+    line-height: 1.3;
+    /* espaçamento de linha */
+}
+
+.card p {
+    font-size: 0.95rem;
+    /* texto levemente menor */
+    color: var(--color-text-muted);
+    /* cinza — texto secundário */
+    line-height: 1.7;
+    /* espaçamento amplo para leitura confortável */
+}
+
+.card strong {
+    color: var(--color-text);
+    /* <strong> dentro do card fica na cor principal (não cinza) */
+    font-weight: 600;
+    /* peso meio-negrito */
+}
+
+/* Lista de itens dentro de cards (estilo ícone + texto) */
+.card-list {
+    display: flex;
+    /* ativa flexbox */
+    flex-direction: column;
+    /* empilha os itens */
+    gap: 0.75rem;
+    /* espaço entre cada item */
+}
+
+.card-list-item {
+    display: flex;
+    /* ícone e texto lado a lado */
+    align-items: flex-start;
+    /* alinha pelo topo (para textos longos) */
+    gap: 0.6rem;
+    /* espaço entre ícone e texto */
+    font-size: 0.9rem;
+    /* texto um pouco menor */
+    color: var(--color-text-muted);
+    /* cinza */
+}
+
+.list-icon {
+    font-size: 1rem;
+    /* tamanho do emoji/ícone */
+    flex-shrink: 0;
+    /* o ícone não encolhe se o texto for longo */
+    margin-top: 0.1rem;
+    /* pequeno ajuste para alinhar com o texto */
+}
+
+/* Lista com setas (substitui os pontos da <ul> padrão) */
+.styled-list {
+    list-style: none;
+    /* remove os pontos padrão da lista */
+    display: flex;
+    /* ativa flexbox */
+    flex-direction: column;
+    /* empilha os itens */
+    gap: 0.5rem;
+    /* espaço entre os itens */
+    padding-left: 0;
+    /* remove o recuo padrão da lista */
+}
+
+.styled-list li {
+    font-size: 0.9rem;
+    /* texto levemente menor */
+    color: var(--color-text-muted);
+    /* cinza */
+    padding-left: 1.4rem;
+    /* abre espaço para a seta no lado esquerdo */
+    position: relative;
+    /* contexto de posicionamento para o ::before */
+}
+
+/* Seta antes de cada item da lista (pseudo-elemento) */
+.styled-list li::before {
+    content: "→";
+    /* insere a seta sem precisar escrever no HTML */
+    position: absolute;
+    /* posicionado em relação ao <li> */
+    left: 0;
+    /* fica na borda esquerda do <li> */
+    color: var(--color-primary);
+    /* seta em roxo */
+    font-weight: 700;
+    /* seta em negrito */
+}
+
+/* =============================================
+   COMPARATIVO (usado apenas se card--wide ativo)
+   ============================================= */
+.comparison {
+    display: flex;
+    /* coloca os dois lados lado a lado */
+    flex-wrap: wrap;
+    /* quebra linha em telas pequenas */
+    align-items: center;
+    /* alinha verticalmente com o "VS" */
+    gap: 1rem;
+    /* espaço entre os elementos */
+    margin-top: 0.5rem;
+    /* pequeno espaço acima */
+}
+
+.comparison-item {
+    flex: 1;
+    /* cada item ocupa metade do espaço disponível */
+    min-width: 220px;
+    /* mínimo para não ficar espremido */
+    padding: 1.25rem;
+    /* espaçamento interno */
+    border-radius: var(--radius-md);
+    /* cantos arredondados */
+    border: 1px solid var(--color-border);
+    /* borda cinza sutil */
+    display: flex;
+    /* ativa flexbox interno */
+    flex-direction: column;
+    /* empilha label e texto */
+    gap: 0.6rem;
+    /* espaço entre elementos */
+}
+
+.comparison-item--html {
+    border-left: 4px solid var(--color-primary);
+    /* barra roxa à esquerda */
+    background-color: #fafafe;
+    /* fundo levemente azulado */
+}
+
+.comparison-item--xml {
+    border-left: 4px solid var(--color-accent);
+    /* barra ciana à esquerda */
+    background-color: #f0fbfd;
+    /* fundo levemente ciano */
+}
+
+.comparison-label {
+    font-size: 0.75rem;
+    /* label pequeno */
+    font-weight: 700;
+    /* negrito */
+    text-transform: uppercase;
+    /* maiúsculas */
+    letter-spacing: 0.08em;
+    /* espaçamento entre letras */
+    color: var(--color-primary);
+    /* roxo */
+}
+
+.comparison-item--xml .comparison-label {
+    color: var(--color-accent);
+    /* overwrite: label do XML fica ciano */
+}
+
+.comparison-divider {
+    font-weight: 700;
+    /* negrito */
+    font-size: 0.85rem;
+    /* tamanho do "VS" */
+    color: var(--color-text-muted);
+    /* cinza */
+    text-align: center;
+    /* centraliza */
+    flex-shrink: 0;
+    /* não encolhe */
+}
+
+/* =============================================
+   ELEMENTO <code>
+   ============================================= */
+code {
+    display: inline-block;
+    /* não ocupa linha toda */
+    font-family: "Courier New", Courier, monospace;
+    /* fonte monoespaçada (padrão para código) */
+    font-size: 0.85em;
+    /* menor que o texto ao redor */
+    background-color: var(--color-code-bg);
+    /* fundo roxo claro */
+    color: var(--color-code-text);
+    /* texto roxo */
+    padding: 0.1em 0.4em;
+    /* espaçamento interno compacto */
+    border-radius: 4px;
+    /* leve arredondamento */
+    font-weight: 600;
+    /* levemente negrito */
+}
+
+/* =============================================
+   FORMULÁRIO
+   ============================================= */
 form {
-	max-width: 600px;
-	margin: 0 auto;
-	background-color: #fff;
-	padding: 2.5rem;
-	border-radius: 8px;
-	box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.1);
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
+    background-color: var(--color-surface);
+    /* fundo branco */
+    border: 1px solid var(--color-border);
+    /* borda cinza */
+    border-radius: var(--radius-lg);
+    /* cantos bem arredondados */
+    padding: 2.5rem;
+    /* espaçamento interno generoso */
+    box-shadow: var(--shadow-sm);
+    /* sombra leve */
+    display: flex;
+    /* ativa flexbox */
+    flex-direction: column;
+    /* empilha os campos */
+    gap: 0.25rem;
+    /* pequeno espaço entre os campos */
+    max-width: 620px;
+    /* limita a largura do formulário */
+}
+
+.form-group {
+    display: flex;
+    /* ativa flexbox */
+    flex-direction: column;
+    /* label acima, input abaixo */
+    gap: 0.4rem;
+    /* espaço entre label e input */
+    margin-bottom: 0.75rem;
+    /* espaço abaixo de cada grupo */
 }
 
 form label {
-	font-weight: 500;
-	font-size: 1.125rem;
-	color: #333;
-	margin-top: 0.5rem;
+    font-weight: 600;
+    /* label em semi-negrito */
+    font-size: 0.9rem;
+    /* levemente menor que o texto normal */
+    color: var(--color-text);
+    /* cor principal */
 }
 
+/* Aplica estilo em inputs de texto, email e senha — exclui radio e checkbox */
 form input:not([type="radio"]):not([type="checkbox"]),
 form textarea {
-	width: 100%;
-	padding: 0.75rem 1rem;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	font-family: inherit;
-	font-size: 1rem;
-	background-color: #fafafa;
-	transition: border-color 0.25s ease;
+    width: 100%;
+    /* ocupa toda a largura do form */
+    padding: 0.7rem 1rem;
+    /* espaçamento interno (vertical horizontal) */
+    border: 1.5px solid var(--color-border);
+    /* borda cinza um pouco mais grossa */
+    border-radius: var(--radius-sm);
+    /* leve arredondamento */
+    font-family: inherit;
+    /* herda a fonte do body (DM Sans) */
+    font-size: 0.9375rem;
+    /* tamanho confortável para digitação */
+    background-color: #fafafa;
+    /* fundo levemente cinza (diferente do branco puro) */
+    color: var(--color-text);
+    /* cor do texto digitado */
+    transition: border-color var(--transition), box-shadow var(--transition);
+    /* prepara animação do focus */
+}
+
+/* Estado de foco (quando o usuário clica no campo) */
+form input:not([type="radio"]):not([type="checkbox"]):focus,
+form textarea:focus {
+    outline: none;
+    /* remove o contorno padrão do navegador */
+    border-color: var(--color-primary);
+    /* borda fica roxa */
+    background-color: #fff;
+    /* fundo fica branco puro */
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    /* halo roxo translúcido ao redor */
 }
 
 form textarea {
-	resize: vertical;
-	min-height: 120px;
+    resize: vertical;
+    /* permite redimensionar apenas verticalmente */
+    min-height: 120px;
+    /* altura mínima da textarea */
 }
 
-form input:not([type="radio"]):not([type="checkbox"]):focus,
-form textarea:focus {
-	outline: none;
-	border-color: #007bff;
-	background-color: #fff;
-}
-
+/* Botão Enviar */
 form button[type="submit"] {
-	background-color: #007bff;
-	color: #fff;
-	font-weight: 700;
-	font-size: 1.125rem;
-	padding: 0.75rem 1.5rem;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background-color 0.25s ease;
-	align-self: flex-start;
-	margin-top: 1rem;
+    align-self: flex-start;
+    /* não ocupa a largura toda — fica do tamanho do texto */
+    margin-top: 0.75rem;
+    /* espaço acima do botão */
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    /* gradiente diagonal roxo */
+    color: #fff;
+    /* texto branco */
+    font-family: inherit;
+    /* herda a fonte DM Sans */
+    font-weight: 700;
+    /* negrito */
+    font-size: 1rem;
+    /* tamanho normal */
+    padding: 0.75rem 2rem;
+    /* espaçamento interno generoso */
+    border: none;
+    /* remove a borda padrão do botão */
+    border-radius: var(--radius-sm);
+    /* leve arredondamento */
+    cursor: pointer;
+    /* muda o cursor para "mãozinha" */
+    transition: opacity var(--transition), transform var(--transition);
+    /* prepara hover */
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    /* sombra colorida embaixo do botão */
 }
 
+/* Hover no botão */
 form button[type="submit"]:hover {
-	background-color: #0056b3;
+    opacity: 0.9;
+    /* levemente transparente */
+    transform: translateY(-2px);
+    /* sobe 2px */
 }
 
+/* =============================================
+   RADIO BUTTONS
+   ============================================= */
 .radio-title {
-	font-weight: 500;
-	font-size: 1.125rem;
-	color: #333;
-	margin-top: 0.5rem;
-	margin-bottom: 0;
+    font-weight: 600;
+    /* semi-negrito */
+    font-size: 0.9rem;
+    /* tamanho igual ao label */
+    color: var(--color-text);
+    /* cor principal */
+    margin-bottom: 0.2rem;
+    /* pequeno espaço abaixo do título */
 }
 
 .radio-group {
-	display: flex;
-	flex-direction: column;
-	gap: 0.75rem;
-	margin-bottom: 0.5rem;
+    display: flex;
+    /* ativa flexbox */
+    flex-direction: column;
+    /* empilha as opções */
+    gap: 0.6rem;
+    /* espaço entre cada opção */
 }
 
 .radio-option {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
+    display: flex;
+    /* coloca o círculo e o label lado a lado */
+    align-items: center;
+    /* alinha verticalmente */
+    gap: 0.625rem;
+    /* espaço entre o círculo e o texto */
 }
 
 .radio-option input[type="radio"] {
-	width: 1.25rem;
-	height: 1.25rem;
-	margin: 0;
-	cursor: pointer;
-	accent-color: #007bff;
+    width: 1.1rem;
+    /* largura do círculo */
+    height: 1.1rem;
+    /* altura do círculo */
+    margin: 0;
+    /* remove margem padrão */
+    cursor: pointer;
+    /* cursor mãozinha */
+    accent-color: var(--color-primary);
+    /* cor do círculo quando selecionado */
+    flex-shrink: 0;
+    /* não encolhe */
 }
 
 .radio-option label {
-	margin: 0;
-	font-weight: 400;
-	font-size: 1rem;
-	cursor: pointer;
-	color: #333;
+    margin: 0;
+    /* remove margem padrão */
+    font-weight: 400;
+    /* peso normal (não negrito) */
+    font-size: 0.9375rem;
+    /* tamanho confortável */
+    cursor: pointer;
+    /* cursor mãozinha (clicar no label também marca o radio) */
+    color: var(--color-text-muted);
+    /* cinza */
+}
+
+/* =============================================
+   LISTA DE E-MAILS (E-mails.html)
+   ============================================= */
+.email-list {
+    list-style: none;
+    /* remove os números da lista */
+    padding: 0;
+    /* remove recuo padrão */
+}
+
+.email-list li {
+    margin-bottom: 0.5rem;
+    /* espaço entre cada e-mail */
+}
+
+.email-list a {
+    color: var(--color-primary);
+    /* link roxo */
+    text-decoration: none;
+    /* sem sublinhado */
+    font-weight: 500;
+    /* peso médio */
+}
+
+.email-list a:hover {
+    text-decoration: underline;
+    /* sublinhado ao passar o mouse */
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.site-footer {
+    border-top: 1px solid var(--color-border);
+    /* linha sutil no topo do footer */
+    padding: 2rem 0;
+    /* espaçamento vertical */
+    text-align: center;
+    /* texto centralizado */
+    color: var(--color-text-muted);
+    /* cinza */
+    font-size: 0.875rem;
+    /* texto pequeno */
+}
+
+.site-footer strong {
+    color: var(--color-text);
+    /* nome em negrito fica na cor principal (não cinza) */
+}
+
+/* =============================================
+   WIDGET (mantido para compatibilidade)
+   ============================================= */
+.widget {
+    width: 100%;
+    /* ocupa toda a largura disponível */
+    max-width: 600px;
+    /* limita a largura */
+    border-radius: var(--radius-md);
+    /* cantos arredondados */
+    box-shadow: var(--shadow-md);
+    /* sombra média */
+    background-color: var(--color-surface);
+    /* fundo branco */
+    padding: 2.5rem;
+    /* espaçamento interno */
+    margin-left: auto;
+    /* centraliza */
+    margin-right: auto;
+    /* centraliza */
+    margin-bottom: 2rem;
+    /* espaço abaixo */
+    font-size: 1.125rem;
+    /* texto um pouco maior */
+}
+
+/* Adiciona espaço entre todos os filhos diretos do widget, exceto o primeiro */
+.widget>*+* {
+    margin-top: 1.25em;
+    /* espaço acima de cada filho (exceto o primeiro) */
+}
+
+.widget h2 {
+    font-size: 1.5rem;
+    /* título do widget */
+    font-weight: 700;
+    /* negrito */
+    line-height: 1.25;
+    /* espaçamento de linha compacto */
+}
+
+.widget strong {
+    font-weight: 700;
+    /* negrito forte */
 }
