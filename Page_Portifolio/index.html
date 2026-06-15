@@ -35,22 +35,21 @@
 
         <!-- Section Hero -->
         <section class="hero">
-            <div class="hero-badge">Infraestrutura</div>
-            <h1 class="hero-title">Gerenciamento do <span class="highlight">Servidor</span></h1>
-            <p class="hero-subtitle">Monitore o status do servidor em tempo real, configure os parâmetros de rede e
-                aprenda como se conectar.</p>
+            <div class="hero-badge">Servidor Ativo</div>
+            <h1 class="hero-title">Servidor <span class="highlight">TV Box &amp; Termux</span></h1>
+            <p class="hero-subtitle">Monitore o status do servidor, obtenha credenciais de conexão e acesse o guia para alunos via WinSCP.</p>
             <div class="hero-chips">
-                <span class="chip">Nginx</span>
-                <span class="chip">SSH</span>
-                <span class="chip">FTP</span>
-                <span class="chip">Linux</span>
+                <span class="chip">Termux</span>
+                <span class="chip">Apache2</span>
+                <span class="chip">SFTP</span>
+                <span class="chip">TV Box</span>
             </div>
         </section>
 
         <!-- Seção do Servidor (Painel Interativo) -->
         <section class="server-dashboard">
             <div class="server-grid">
-
+                
                 <!-- Card de Status e Controle -->
                 <div class="card server-card-status">
                     <div class="card-tag">Painel de Controle</div>
@@ -58,50 +57,59 @@
                         <span class="status-dot online" id="status-dot"></span>
                         <span class="status-text" id="status-text">Servidor Ativo</span>
                     </div>
-
+                    
                     <div class="stats-group">
                         <div class="stat-item">
-                            <span class="stat-label">Endereço IP</span>
-                            <span class="stat-value" id="server-ip">192.168.1.100</span>
+                            <span class="stat-label">Endereço IP Local (Ethernet)</span>
+                            <span class="stat-value" id="server-ip">192.168.15.6</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-label">Porta Ativa</span>
+                            <span class="stat-label">Porta Web (HTTP)</span>
                             <span class="stat-value" id="server-port-display">8080</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-label">Uso de CPU</span>
                             <div class="progress-bar-container">
-                                <div class="progress-bar" id="cpu-bar" style="width: 12%"></div>
+                                <div class="progress-bar" id="cpu-bar" style="width: 8%"></div>
                             </div>
-                            <span class="stat-value-sub" id="cpu-text">12%</span>
+                            <span class="stat-value-sub" id="cpu-text">8%</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-label">Uso de Memória</span>
                             <div class="progress-bar-container">
-                                <div class="progress-bar" id="ram-bar" style="width: 42%"></div>
+                                <div class="progress-bar" id="ram-bar" style="width: 28%"></div>
                             </div>
-                            <span class="stat-value-sub" id="ram-text">42% (2.1 GB / 8 GB)</span>
+                            <span class="stat-value-sub" id="ram-text">28% (560 MB / 2 GB)</span>
                         </div>
                     </div>
 
                     <div class="server-actions">
                         <button class="btn btn-danger" id="btn-toggle-server" onclick="toggleServer()">Desligar</button>
-                        <button class="btn btn-secondary" id="btn-restart-server"
-                            onclick="restartServer()">Reiniciar</button>
+                        <button class="btn btn-secondary" id="btn-restart-server" onclick="restartServer()">Reiniciar</button>
                     </div>
                 </div>
 
                 <!-- Console / Terminal Log em Tempo Real -->
                 <div class="card server-card-console">
-                    <div class="card-tag">Log do Terminal</div>
-                    <div class="console-wrapper">
-                        <div class="console-body" id="console-log">
-                            <div class="console-line text-system">[SISTEMA] Inicializando monitoramento do servidor...
+                    <div class="card-tag">Log do Terminal (Apache2/Termux)</div>
+                    <div class="console-window">
+                        <div class="console-titlebar">
+                            <div class="console-dots">
+                                <span class="console-dot close-dot"></span>
+                                <span class="console-dot minimize-dot"></span>
+                                <span class="console-dot maximize-dot"></span>
                             </div>
-                            <div class="console-line text-info">[INFO] Servidor escutando na porta 8080 (Protocolo HTTP)
+                            <span class="console-title">termux - admin@192.168.15.6</span>
+                        </div>
+                        <div class="console-wrapper">
+                            <div class="console-body" id="console-log">
+                                <div class="console-line text-system">[SYSTEM] Inicializando Termux environment...</div>
+                                <div class="console-line text-success">[OK] SSH escutando na porta 8022 (sshd)</div>
+                                <div class="console-line text-info">[INFO] API Backend escutando em http://192.168.15.6:5000</div>
+                                <div class="console-line text-info">[INFO] Iniciando Apache2 (httpd) no root termux...</div>
+                                <div class="console-line text-success">[OK] Apache2 rodando com sucesso na porta 8080</div>
+                                <div class="console-line text-info">[INFO] Diretório raiz: /data/data/com.termux/files/usr/share/apache2/default-site/htdocs/</div>
                             </div>
-                            <div class="console-line text-info">[INFO] Serviço SSH iniciado na porta 2200</div>
-                            <div class="console-line text-success">[OK] Conexão estabelecida com sucesso.</div>
                         </div>
                     </div>
                     <button class="btn btn-text" onclick="clearLogs()">Limpar console</button>
@@ -114,81 +122,162 @@
             <header class="exercise-header">
                 <span class="exercise-number">⚡</span>
                 <div>
-                    <h2 class="exercise-title">Como se Conectar</h2>
-                    <p class="exercise-desc">Instruções e comandos para acessar o ambiente do servidor</p>
+                    <h2 class="exercise-title">Como se Conectar &amp; Configurar</h2>
+                    <p class="exercise-desc">Instruções de conexão física, credenciais oficiais e tutoriais de acesso</p>
                 </div>
             </header>
 
-            <<<<<<< HEAD <div class="connection-tabs-container">
+            <div class="connection-tabs-container">
                 <div class="connection-tabs-nav">
-                    <button class="tab-btn active" onclick="switchTab('ssh')">SSH (Terminal)</button>
+                    <button class="tab-btn active" onclick="switchTab('credenciais')">Dados Oficiais</button>
+                    <button class="tab-btn" onclick="switchTab('ssh')">SSH (Terminal)</button>
                     <button class="tab-btn" onclick="switchTab('http')">HTTP (Navegador)</button>
-                    <button class="tab-btn" onclick="switchTab('ftp')">FTP (Arquivos)</button>
-                    =======
-                    <form id="formulario" method="post" action="https://elgio.prof.nom.br/web/le/"
-                        onsubmit="validaDados()">
-                        <div class="form-group">
-                            <label for="nome">Nome Completo</label>
-                            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" placeholder="Digite seu e-mail">
-                        </div>
-                        <div class="form-group">
-                            <label for="senha">Senha</label>
-                            <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
-                            >>>>>>> a9f7bb5a67b594d84c2972ce4c47727c5caa0e9b
-                        </div>
-
-                        <div class="connection-tabs-content card">
-                            <!-- Tab SSH -->
-                            <div class="tab-pane active" id="pane-ssh">
-                                <h3>Conexão Segura via Terminal (SSH)</h3>
-                                <p>Use o cliente SSH do seu sistema operacional para abrir uma sessão de terminal
-                                    criptografada no servidor.</p>
-                                <div class="code-box">
-                                    <code id="code-ssh">ssh admin@192.168.1.100 -p 2200</code>
-                                    <button class="btn-copy" onclick="copyText('code-ssh', this)">Copiar</button>
-                                </div>
-                                <ul class="styled-list" style="margin-top: 1rem;">
-                                    <li>Certifique-se de que a sua chave SSH está autorizada no servidor.</li>
-                                    <li>Senha de acesso temporária enviada ao seu e-mail institucional.</li>
-                                </ul>
-                            </div>
-
-                            <!-- Tab HTTP -->
-                            <div class="tab-pane" id="pane-http">
-                                <h3>Acesso Web (HTTP)</h3>
-                                <p>Acesse o servidor diretamente através do seu navegador para visualizar as aplicações
-                                    web hospedadas.</p>
-                                <div class="code-box">
-                                    <code id="code-http">http://192.168.1.100:8080</code>
-                                    <button class="btn-copy" onclick="copyText('code-http', this)">Copiar</button>
-                                </div>
-                                <ul class="styled-list" style="margin-top: 1rem;">
-                                    <li>Verifique se o serviço web está ativo no painel de controle acima.</li>
-                                    <li>Porta padrão HTTP configurada é a 8080.</li>
-                                </ul>
-                            </div>
-
-                            <!-- Tab FTP -->
-                            <div class="tab-pane" id="pane-ftp">
-                                <h3>Transferência de Arquivos (SFTP/FTP)</h3>
-                                <p>Conecte-se usando clientes como FileZilla ou WinSCP para enviar e gerenciar arquivos
-                                    do site.</p>
-                                <div class="code-box">
-                                    <code id="code-ftp">sftp://192.168.1.100:2200</code>
-                                    <button class="btn-copy" onclick="copyText('code-ftp', this)">Copiar</button>
-                                </div>
-                                <ul class="styled-list" style="margin-top: 1rem;">
-                                    <li><strong>Usuário:</strong> <code>admin</code></li>
-                                    <li><strong>Caminho raiz:</strong> <code>/var/www/html/page_portifolio</code></li>
-                                    <li>Utilize o protocolo seguro SFTP para transferências protegidas.</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <button class="tab-btn" onclick="switchTab('api')">API (Backend)</button>
+                    <button class="tab-btn" onclick="switchTab('aluno')">Guia Aluno (WinSCP)</button>
                 </div>
+
+                <div class="connection-tabs-content card">
+                    <!-- Tab Dados Oficiais -->
+                    <div class="tab-pane active" id="pane-credenciais">
+                        <h3>Dados Oficiais do Seu Servidor</h3>
+                        <p>Estas são as credenciais que você configurou e que estão ativas agora na sua <strong>TV Box via cabo de rede</strong>:</p>
+                        
+                        <div class="stats-group" style="margin-top: 1rem;">
+                            <div class="stat-item" style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+                                <span class="stat-label">IP Local (Ethernet)</span>
+                                <span class="stat-value" style="font-size: 1.25rem;">192.168.15.6</span>
+                            </div>
+                            <div class="stat-item" style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+                                <span class="stat-label">Porta Web (Acesso HTTP)</span>
+                                <span class="stat-value" style="font-size: 1.25rem;">8080</span>
+                            </div>
+                            <div class="stat-item" style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+                                <span class="stat-label">Link para acessar o site principal</span>
+                                <a href="http://192.168.15.6:8080" target="_blank" class="stat-value" style="font-size: 1.15rem; text-decoration: underline;" id="link-principal">http://192.168.15.6:8080</a>
+                            </div>
+                            <div class="stat-item" style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+                                <span class="stat-label">Link para acessar o seu Vercel (Redirecionamento /sistema)</span>
+                                <a href="http://192.168.15.6:8080/sistema" target="_blank" class="stat-value" style="font-size: 1.15rem; text-decoration: underline;" id="link-vercel">http://192.168.15.6:8080/sistema</a>
+                            </div>
+                            <div class="stat-item" style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+                                <span class="stat-label">API de Conexão (Backend)</span>
+                                <span class="stat-value" style="font-size: 1.15rem; color: var(--color-accent); font-family: monospace;" id="server-api-display">http://192.168.15.6:5000</span>
+                            </div>
+                            <div class="stat-item" style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+                                <span class="stat-label">Porta SSH/SFTP (WinSCP)</span>
+                                <span class="stat-value" style="font-size: 1.25rem;">8022</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Caminho Raiz (Onde os arquivos ficam no Termux)</span>
+                                <div class="code-box" style="margin-top: 0.25rem;">
+                                    <code id="code-root-path" style="font-size: 0.85rem;">/data/data/com.termux/files/usr/share/apache2/default-site/htdocs/</code>
+                                    <button class="btn-copy" onclick="copyText('code-root-path', this)">Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab SSH -->
+                    <div class="tab-pane" id="pane-ssh">
+                        <h3>Conexão Segura via Terminal (SSH)</h3>
+                        <p>Use o terminal de sua preferência para conectar-se remotamente ao Termux na TV Box.</p>
+                        <div class="code-box">
+                            <code id="code-ssh">ssh admin@192.168.15.6 -p 8022</code>
+                            <button class="btn-copy" onclick="copyText('code-ssh', this)">Copiar</button>
+                        </div>
+                        <ul class="styled-list" style="margin-top: 1rem;">
+                            <li>Certifique-se de que a TV Box e o computador estejam na mesma rede local.</li>
+                            <li>Use o comando <code>passwd</code> no Termux se precisar redefinir sua senha.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tab HTTP -->
+                    <div class="tab-pane" id="pane-http">
+                        <h3>Acesso Web (HTTP)</h3>
+                        <p>Endereço do servidor para testar e ver suas aplicações pelo navegador na rede local.</p>
+                        <div class="code-box">
+                            <code id="code-http">http://192.168.15.6:8080</code>
+                            <button class="btn-copy" onclick="copyText('code-http', this)">Copiar</button>
+                        </div>
+                        <ul class="styled-list" style="margin-top: 1rem;">
+                            <li>O servidor Apache2 hospeda o site principal na raiz do diretório.</li>
+                            <li>Para acessar o painel do Vercel, use a subpasta <code>/sistema</code>.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tab API -->
+                    <div class="tab-pane" id="pane-api">
+                        <h3>API de Conexão (Backend)</h3>
+                        <p>Para se conectar ao servidor, o frontend do site deve se conectar por meio da API oficial:</p>
+                        <div class="code-box">
+                            <code id="code-api">http://192.168.15.6:5000</code>
+                            <button class="btn-copy" onclick="copyText('code-api', this)">Copiar</button>
+                        </div>
+                        <ul class="styled-list" style="margin-top: 1rem;">
+                            <li>O frontend consome endpoints de dados e funções dinâmicas através deste endereço.</li>
+                            <li>Certifique-se de configurar corretamente as variáveis de ambiente locais do seu projeto.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tab Aluno (WinSCP) -->
+                    <div class="tab-pane" id="pane-aluno">
+                        <h3>Guia Rápido: Como um aluno adiciona o site dele (Via WinSCP)</h3>
+                        <p style="color: var(--color-text); font-weight: 500;">
+                            Para que seus alunos não sobrescrevam os projetos uns dos outros (e não apaguem o seu redirecionamento do <code>/sistema</code>), a melhor prática é que cada um tenha a sua própria pasta.
+                        </p>
+                        
+                        <div class="styled-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem;">
+                            <div>
+                                <strong style="color: var(--color-primary); display: block; margin-bottom: 0.25rem;">Passo 1: Abrir o WinSCP</strong>
+                                <span style="font-size: 0.95rem; color: var(--color-text-muted);">Abra o software WinSCP no computador de desenvolvimento.</span>
+                            </div>
+                            
+                            <div>
+                                <strong style="color: var(--color-primary); display: block; margin-bottom: 0.25rem;">Passo 2: Preencher os dados de conexão</strong>
+                                <ul class="styled-list" style="margin-left: 1rem; margin-top: 0.25rem;">
+                                    <li><strong>Protocolo de Arquivo:</strong> SFTP</li>
+                                    <li><strong>Host name:</strong> <code>192.168.15.6</code></li>
+                                    <li><strong>Port parameter:</strong> <code>8022</code></li>
+                                    <li><strong>User name / Password:</strong> (A senha que você criou quando rodou o comando <code>passwd</code> no Termux).</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <strong style="color: var(--color-primary); display: block; margin-bottom: 0.25rem;">Passo 3: Navegar até a pasta raiz</strong>
+                                <span style="font-size: 0.95rem; color: var(--color-text-muted);">
+                                    Na barra superior (ou pressionando <kbd style="background: var(--color-border); padding: 0.1rem 0.3rem; border-radius: 4px; font-family: inherit; font-size: 0.8rem;">Ctrl + O</kbd>), cole o seguinte caminho raiz:
+                                </span>
+                                <div class="code-box" style="margin-top: 0.5rem; max-width: 100%;">
+                                    <code id="code-aluno-path" style="font-size: 0.85rem;">/data/data/com.termux/files/usr/share/apache2/default-site/htdocs/</code>
+                                    <button class="btn-copy" onclick="copyText('code-aluno-path', this)">Copiar</button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <strong style="color: var(--color-primary); display: block; margin-bottom: 0.25rem;">Passo 4: Criar o diretório do projeto</strong>
+                                <span style="font-size: 0.95rem; color: var(--color-text-muted);">
+                                    Clique com o botão direito em um espaço vazio na janela do servidor > <strong>Novo > Diretório</strong>. Dê o nome do seu projeto (ex: <code>site-do-joao</code>).
+                                </span>
+                            </div>
+
+                            <div>
+                                <strong style="color: var(--color-primary); display: block; margin-bottom: 0.25rem;">Passo 5: Enviar os arquivos</strong>
+                                <span style="font-size: 0.95rem; color: var(--color-text-muted);">
+                                    Dê um duplo clique na nova pasta criada para entrar nela. Arraste todos os seus arquivos (<code>index.html</code>, <code>style.css</code>, etc.) do seu computador para dentro dessa pasta no WinSCP.
+                                </span>
+                            </div>
+
+                            <div style="background-color: var(--color-primary-light); padding: 1rem; border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+                                <strong style="color: var(--color-text); display: block; margin-bottom: 0.25rem;">🌐 Como Acessar no Navegador</strong>
+                                <span style="font-size: 0.95rem; color: var(--color-text);">
+                                    Abra o navegador e digite o IP, a porta e a pasta do projeto. Exemplo:<br>
+                                    <a href="http://192.168.15.6:8080/site-do-joao" target="_blank" style="font-weight: 700; color: var(--color-primary); text-decoration: underline;">http://192.168.15.6:8080/site-do-joao</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Página/Formulário para Preparar o Servidor -->
@@ -204,8 +293,7 @@
             <form onsubmit="saveServerConfig(event)" id="server-config-form">
                 <div class="form-group">
                     <label for="server-ip-input">Endereço IP do Servidor</label>
-                    <input type="text" id="server-ip-input" name="server_ip" value="192.168.1.100"
-                        placeholder="Ex: 192.168.1.100">
+                    <input type="text" id="server-ip-input" name="server_ip" value="192.168.15.6" placeholder="Ex: 192.168.15.6">
                 </div>
                 <div class="form-group">
                     <label for="server-port-input">Porta HTTP</label>
@@ -213,7 +301,11 @@
                 </div>
                 <div class="form-group">
                     <label for="server-ssh-port-input">Porta SSH</label>
-                    <input type="number" id="server-ssh-port-input" name="ssh_port" value="2200" placeholder="Ex: 2200">
+                    <input type="number" id="server-ssh-port-input" name="ssh_port" value="8022" placeholder="Ex: 8022">
+                </div>
+                <div class="form-group">
+                    <label for="server-api-port-input">Porta da API Backend</label>
+                    <input type="number" id="server-api-port-input" name="api_port" value="5000" placeholder="Ex: 5000">
                 </div>
                 <div class="form-group">
                     <p class="radio-title">Modo de Operação</p>
@@ -241,201 +333,212 @@
         </div>
     </footer>
 
-    <<<<<<< HEAD <!--=====JAVASCRIPT=====-->
-        <script>
-            // Alternar abas de conexão
-            function switchTab(tabName) {
-                // Remove classe active de todos os botões e abas
-                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-                document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // Alternar abas de conexão
+        function switchTab(tabName) {
+            // Remove classe active de todos os botões e abas
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+            
+            // Adiciona classe active no selecionado
+            const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => {
+                const text = btn.innerText.toLowerCase();
+                if (tabName === 'credenciais') return text.includes('dados');
+                if (tabName === 'aluno') return text.includes('aluno') || text.includes('winscp');
+                return text.includes(tabName);
+            });
+            if (activeBtn) activeBtn.classList.add('active');
+            
+            const activePane = document.getElementById('pane-' + tabName);
+            if (activePane) activePane.classList.add('active');
+            
+            logToConsole(`[INTERAÇÃO] Alternado para aba de conexão: ${tabName.toUpperCase()}`, 'info');
+        }
 
-                // Adiciona classe active no selecionado
-                const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.innerText.toLowerCase().includes(tabName));
-                if (activeBtn) activeBtn.classList.add('active');
+        // Copiar texto para a área de transferência
+        function copyText(elementId, btnElement) {
+            const codeText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                const originalText = btnElement.innerText;
+                btnElement.innerText = "Copiado!";
+                btnElement.style.background = "var(--color-accent)";
+                btnElement.style.color = "#fff";
+                
+                logToConsole(`[INTERAÇÃO] Comando copiado: "${codeText}"`, 'success');
+                
+                setTimeout(() => {
+                    btnElement.innerText = originalText;
+                    btnElement.style.background = "";
+                    btnElement.style.color = "";
+                }, 1500);
+            }).catch(err => {
+                logToConsole('[ERRO] Falha ao copiar comando.', 'error');
+            });
+        }
 
-                const activePane = document.getElementById('pane-' + tabName);
-                if (activePane) activePane.classList.add('active');
-
-                logToConsole(`[INTERAÇÃO] Alternado para aba de conexão: ${tabName.toUpperCase()}`, 'info');
+        // Adiciona linha no console
+        function logToConsole(message, type = 'system') {
+            const consoleLog = document.getElementById('console-log');
+            if (!consoleLog) return;
+            
+            const line = document.createElement('div');
+            line.className = 'console-line';
+            
+            const now = new Date();
+            const timeStr = `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}]`;
+            
+            if (type === 'error') {
+                line.className += ' text-error';
+                line.innerText = `${timeStr} [ERRO] ${message}`;
+            } else if (type === 'success') {
+                line.className += ' text-success';
+                line.innerText = `${timeStr} [OK] ${message}`;
+            } else if (type === 'info') {
+                line.className += ' text-info';
+                line.innerText = `${timeStr} ${message}`;
+            } else {
+                line.className += ' text-system';
+                line.innerText = `${timeStr} ${message}`;
             }
+            
+            consoleLog.appendChild(line);
+            consoleLog.scrollTop = consoleLog.scrollHeight;
+        }
 
-            // Copiar texto para a área de transferência
-            function copyText(elementId, btnElement) {
-                const codeText = document.getElementById(elementId).innerText;
-                navigator.clipboard.writeText(codeText).then(() => {
-                    const originalText = btnElement.innerText;
-                    btnElement.innerText = "Copiado!";
-                    btnElement.style.background = "var(--color-accent)";
-                    btnElement.style.color = "#fff";
-
-                    logToConsole(`[INTERAÇÃO] Comando copiado: "${codeText}"`, 'success');
-
-                    setTimeout(() => {
-                        btnElement.innerText = originalText;
-                        btnElement.style.background = "";
-                        btnElement.style.color = "";
-                    }, 1500);
-                }).catch(err => {
-                    logToConsole('[ERRO] Falha ao copiar comando.', 'error');
-                });
+        // Limpar logs
+        function clearLogs() {
+            const consoleLog = document.getElementById('console-log');
+            if (consoleLog) {
+                consoleLog.innerHTML = '<div class="console-line text-system">[SISTEMA] Console de logs limpo pelo usuário.</div>';
             }
+        }
 
-            // Adiciona linha no console
-            function logToConsole(message, type = 'system') {
-                const consoleLog = document.getElementById('console-log');
-                if (!consoleLog) return;
+        // Variável de controle do estado do servidor
+        let isServerOnline = true;
+        let statsInterval = null;
 
-                const line = document.createElement('div');
-                line.className = 'console-line';
-
-                const now = new Date();
-                const timeStr = `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}]`;
-
-                if (type === 'error') {
-                    line.className += ' text-error';
-                    line.innerText = `${timeStr} [ERRO] ${message}`;
-                } else if (type === 'success') {
-                    line.className += ' text-success';
-                    line.innerText = `${timeStr} [OK] ${message}`;
-                } else if (type === 'info') {
-                    line.className += ' text-info';
-                    line.innerText = `${timeStr} ${message}`;
-                } else {
-                    line.className += ' text-system';
-                    line.innerText = `${timeStr} ${message}`;
-                }
-
-                consoleLog.appendChild(line);
-                consoleLog.scrollTop = consoleLog.scrollHeight;
+        // Alternar estado Ligar/Desligar
+        function toggleServer() {
+            isServerOnline = !isServerOnline;
+            const dot = document.getElementById('status-dot');
+            const text = document.getElementById('status-text');
+            const btn = document.getElementById('btn-toggle-server');
+            
+            if (isServerOnline) {
+                dot.className = "status-dot online";
+                text.innerText = "Servidor Ativo";
+                btn.innerText = "Desligar";
+                btn.className = "btn btn-danger";
+                logToConsole("[SISTEMA] Servidor foi iniciado com sucesso.", "success");
+                startMetricsSimulation();
+            } else {
+                dot.className = "status-dot offline";
+                text.innerText = "Servidor Inativo";
+                btn.innerText = "Ligar";
+                btn.className = "btn btn-success";
+                logToConsole("[SISTEMA] Servidor foi desligado e todos os serviços parados.", "error");
+                stopMetricsSimulation();
+                
+                // Zera as barras
+                document.getElementById('cpu-bar').style.width = '0%';
+                document.getElementById('cpu-text').innerText = '0%';
+                document.getElementById('ram-bar').style.width = '0%';
+                document.getElementById('ram-text').innerText = '0% (Inativo)';
             }
+        }
 
-            // Limpar logs
-            function clearLogs() {
-                const consoleLog = document.getElementById('console-log');
-                if (consoleLog) {
-                    consoleLog.innerHTML = '<div class="console-line text-system">[SISTEMA] Console de logs limpo pelo usuário.</div>';
-                }
-            }
-
-            // Variável de controle do estado do servidor
-            let isServerOnline = true;
-            let statsInterval = null;
-
-            // Alternar estado Ligar/Desligar
-            function toggleServer() {
-                isServerOnline = !isServerOnline;
-                const dot = document.getElementById('status-dot');
-                const text = document.getElementById('status-text');
-                const btn = document.getElementById('btn-toggle-server');
-
+        // Reiniciar Servidor
+        function restartServer() {
+            logToConsole("[SISTEMA] Reinicializando o servidor...", "system");
+            const dot = document.getElementById('status-dot');
+            const text = document.getElementById('status-text');
+            
+            dot.className = "status-dot offline";
+            text.innerText = "Reiniciando...";
+            
+            // Simula reinicialização
+            setTimeout(() => {
                 if (isServerOnline) {
                     dot.className = "status-dot online";
                     text.innerText = "Servidor Ativo";
-                    btn.innerText = "Desligar";
-                    btn.className = "btn btn-danger";
-                    logToConsole("[SISTEMA] Servidor foi iniciado com sucesso.", "success");
-                    startMetricsSimulation();
+                    logToConsole("[SISTEMA] Servidor reiniciado e pronto para receber conexões.", "success");
                 } else {
-                    dot.className = "status-dot offline";
-                    text.innerText = "Servidor Inativo";
-                    btn.innerText = "Ligar";
-                    btn.className = "btn btn-success";
-                    logToConsole("[SISTEMA] Servidor foi desligado e todos os serviços parados.", "error");
-                    stopMetricsSimulation();
-
-                    // Zera as barras
-                    document.getElementById('cpu-bar').style.width = '0%';
-                    document.getElementById('cpu-text').innerText = '0%';
-                    document.getElementById('ram-bar').style.width = '0%';
-                    document.getElementById('ram-text').innerText = '0% (Inativo)';
+                    logToConsole("[SISTEMA] O servidor está offline. Ligue-o para iniciar.", "info");
                 }
-            }
+            }, 1000);
+        }
 
-            // Reiniciar Servidor
-            function restartServer() {
-                logToConsole("[SISTEMA] Reinicializando o servidor...", "system");
-                const dot = document.getElementById('status-dot');
-                const text = document.getElementById('status-text');
-
-                dot.className = "status-dot offline";
-                text.innerText = "Reiniciando...";
-
-                // Simula reinicialização
-                setTimeout(() => {
-                    if (isServerOnline) {
-                        dot.className = "status-dot online";
-                        text.innerText = "Servidor Ativo";
-                        logToConsole("[SISTEMA] Servidor reiniciado e pronto para receber conexões.", "success");
-                    } else {
-                        logToConsole("[SISTEMA] O servidor está offline. Ligue-o para iniciar.", "info");
-                    }
-                }, 1000);
-            }
-
-            // Simulação de uso de recursos
-            function startMetricsSimulation() {
-                if (statsInterval) clearInterval(statsInterval);
-                statsInterval = setInterval(() => {
-                    if (!isServerOnline) return;
-
-                    // Gera CPU e RAM aleatórios
-                    const cpuVal = Math.floor(Math.random() * 30) + 5; // 5% a 35%
-                    const ramVal = Math.floor(Math.random() * 15) + 35; // 35% a 50%
-
-                    document.getElementById('cpu-bar').style.width = cpuVal + '%';
-                    document.getElementById('cpu-text').innerText = cpuVal + '%';
-
-                    document.getElementById('ram-bar').style.width = ramVal + '%';
-                    const ramGB = ((ramVal / 100) * 8).toFixed(1);
-                    document.getElementById('ram-text').innerText = `${ramVal}% (${ramGB} GB / 8 GB)`;
-
-                    // Ocasionalmente loga um acesso simulado
-                    if (Math.random() > 0.8) {
-                        const randomIP = `192.168.1.${Math.floor(Math.random() * 200) + 2}`;
-                        logToConsole(`[NGINX] GET / HTTP/1.1 de ${randomIP} - Status 200`, 'info');
-                    }
-                }, 3000);
-            }
-
-            function stopMetricsSimulation() {
-                if (statsInterval) {
-                    clearInterval(statsInterval);
-                    statsInterval = null;
+        // Simulação de uso de recursos
+        function startMetricsSimulation() {
+            if (statsInterval) clearInterval(statsInterval);
+            statsInterval = setInterval(() => {
+                if (!isServerOnline) return;
+                
+                // Gera CPU e RAM aleatórios
+                const cpuVal = Math.floor(Math.random() * 20) + 4; // 4% a 24%
+                const ramVal = Math.floor(Math.random() * 10) + 24; // 24% a 34%
+                
+                document.getElementById('cpu-bar').style.width = cpuVal + '%';
+                document.getElementById('cpu-text').innerText = cpuVal + '%';
+                
+                document.getElementById('ram-bar').style.width = ramVal + '%';
+                const ramGB = ((ramVal / 100) * 2).toFixed(2);
+                document.getElementById('ram-text').innerText = `${ramVal}% (${ramGB} GB / 2 GB)`;
+                
+                // Ocasionalmente loga um acesso simulado
+                if (Math.random() > 0.85) {
+                    const randomIP = `192.168.15.${Math.floor(Math.random() * 20) + 2}`;
+                    logToConsole(`[APACHE2] GET / HTTP/1.1 de ${randomIP} - Status 200`, 'info');
                 }
+            }, 3000);
+        }
+
+        function stopMetricsSimulation() {
+            if (statsInterval) {
+                clearInterval(statsInterval);
+                statsInterval = null;
             }
+        }
 
-            // Salvar configuração do formulário
-            function saveServerConfig(event) {
-                event.preventDefault();
-
-                const ip = document.getElementById('server-ip-input').value;
-                const port = document.getElementById('server-port-input').value;
-                const sshPort = document.getElementById('server-ssh-port-input').value;
-                const mode = document.querySelector('input[name="server_mode"]:checked').value;
-
-                // Atualiza os displays do painel
-                document.getElementById('server-ip').innerText = ip;
-                document.getElementById('server-port-display').innerText = port;
-
-                // Atualiza os comandos
-                document.getElementById('code-ssh').innerText = `ssh admin@${ip} -p ${sshPort}`;
-                document.getElementById('code-http').innerText = `http://${ip}:${port}`;
-                document.getElementById('code-ftp').innerText = `sftp://${ip}:${sshPort}`;
-
-                logToConsole(`[CONFIG] Parâmetros alterados! Novo IP: ${ip}, Porta HTTP: ${port}, Porta SSH: ${sshPort}, Modo: ${mode}`, 'success');
-                logToConsole(`[CONFIG] Aplicando modificações e reiniciando nginx...`, 'system');
-
-                if (isServerOnline) {
-                    restartServer();
-                }
+        // Salvar configuração do formulário
+        function saveServerConfig(event) {
+            event.preventDefault();
+            
+            const ip = document.getElementById('server-ip-input').value;
+            const port = document.getElementById('server-port-input').value;
+            const sshPort = document.getElementById('server-ssh-port-input').value;
+            const apiPort = document.getElementById('server-api-port-input').value;
+            const mode = document.querySelector('input[name="server_mode"]:checked').value;
+            
+            // Atualiza os displays do painel
+            document.getElementById('server-ip').innerText = ip;
+            document.getElementById('server-port-display').innerText = port;
+            document.getElementById('server-api-display').innerText = `http://${ip}:${apiPort}`;
+            
+            // Atualiza os links
+            document.getElementById('link-principal').innerText = `http://${ip}:${port}`;
+            document.getElementById('link-principal').href = `http://${ip}:${port}`;
+            document.getElementById('link-vercel').innerText = `http://${ip}:${port}/sistema`;
+            document.getElementById('link-vercel').href = `http://${ip}:${port}/sistema`;
+            
+            // Atualiza os comandos
+            document.getElementById('code-ssh').innerText = `ssh admin@${ip} -p ${sshPort}`;
+            document.getElementById('code-http').innerText = `http://${ip}:${port}`;
+            document.getElementById('code-api').innerText = `http://${ip}:${apiPort}`;
+            document.getElementById('code-ftp').innerText = `sftp://${ip}:${sshPort}`;
+            
+            logToConsole(`[CONFIG] Parâmetros alterados! Novo IP: ${ip}, Porta HTTP: ${port}, Porta SSH: ${sshPort}, Porta API: ${apiPort}, Modo: ${mode}`, 'success');
+            logToConsole(`[CONFIG] Aplicando modificações e reiniciando serviços...`, 'system');
+            
+            if (isServerOnline) {
+                restartServer();
             }
+        }
 
-            // Inicia simulação na primeira carga
-            startMetricsSimulation();
-        </script>
-        =======
-        <script src="js/script.js"></script>
-        >>>>>>> a9f7bb5a67b594d84c2972ce4c47727c5caa0e9b
+        // Inicia simulação na primeira carga
+        startMetricsSimulation();
+    </script>
 </body>
 
 </html>
