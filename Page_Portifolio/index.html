@@ -1,26 +1,19 @@
-<!--
-    =============================================
-    Boa noite, Professor! Este é meu HTML.
-    Pedi para a IA resumir o funcionamento de cada TAG para facilitar a leitura
-    Qualquer dúvida estou a disposição. Ass: Lauren Andreazza
-    =============================================
--->
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercícios Dev Web</title>
-    <meta name="description" content="Portfólio de exercícios de Desenvolvimento Web.">
+    <title>Servidor — Dev Web</title>
+    <meta name="description" content="Portfólio de Desenvolvimento Web - Configuração e conexão do servidor.">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <!-- ===== HEADER ===== -->
     <header class="header-outer">
         <div class="header-inner responsive-wrapper">
-            <a href="#" class="header-logo">
+            <a href="index.html" class="header-logo">
                 <span class="logo-bracket">&lt;</span>DevWeb<span class="logo-bracket">/&gt;</span>
             </a>
             <nav class="header-navigation">
@@ -28,184 +21,395 @@
                     <li><a href="https://www.linkedin.com/in/lauren-andreazza/?originalSubdomain=br">Lauren
                             Andreazza</a></li>
                     <li><a href="https://pierrevelozo.com/">Henrique Pierre Velozo</a></li>
-                    <li><a href="https://www.linkedin.com/in/eduarda-palmeiro-bruck-da-silva-023674389/">Maria
-                            Eduarda</a></li>
                     <li><a href="https://www.linkedin.com/in/taylor-cassimiro/">Taylor Cassimiro</a></li>
                     <li><a href="https://www.linkedin.com/in/andrius-anselmi/">Andrius Anselmi</a></li>
+                    <li><a href="Exercicios.html">Exercícios</a></li>
                     <li><a href="E-mails.html">E-mails</a></li>
                 </ol>
             </nav>
         </div>
     </header>
 
+    <!-- ===== MAIN CONTENT ===== -->
     <main class="responsive-wrapper">
 
+        <!-- Section Hero -->
         <section class="hero">
-            <div class="hero-badge">Portfólio</div>
-            <h1 class="hero-title">Exercícios de <span class="highlight">Desenvolvimento Web</span></h1>
-            <p class="hero-subtitle">Fundamentos de HTML, XHTML e XML explorados e explicados com minhas próprias
-                palavras.</p>
+            <div class="hero-badge">Infraestrutura</div>
+            <h1 class="hero-title">Gerenciamento do <span class="highlight">Servidor</span></h1>
+            <p class="hero-subtitle">Monitore o status do servidor em tempo real, configure os parâmetros de rede e aprenda como se conectar.</p>
             <div class="hero-chips">
-                <span class="chip">HTML</span>
-                <span class="chip">XHTML</span>
-                <span class="chip">XML</span>
-                <span class="chip">Formulários</span>
+                <span class="chip">Nginx</span>
+                <span class="chip">SSH</span>
+                <span class="chip">FTP</span>
+                <span class="chip">Linux</span>
             </div>
         </section>
 
-        <section class="exercise-block" id="exercicio-2">
-            <header class="exercise-header">
-                <span class="exercise-number">02</span>
-                <div>
-                    <h2 class="exercise-title">Perguntas Teóricas</h2>
-                    <p class="exercise-desc">Conceitos fundamentais sobre linguagens de marcação</p>
-                </div>
-            </header>
-
-            <div class="cards-grid">
-
-                <article class="card">
-                    <div class="card-tag">HTML</div>
-                    <h3>O que é Hypertext Markup Language (HTML)?</h3>
-                    <p>O HTML é, basicamente, o "esqueleto" de qualquer página na internet. Ele não é uma linguagem de
-                        programação (não tem lógica, variáveis ou loops), mas sim uma <strong>linguagem de
-                            marcação</strong>.
-                        Nós usamos "tags" como <code>&lt;h1&gt;</code> ou <code>&lt;p&gt;</code> para dizer ao navegador
-                        o que é cada parte do conteúdo: título, parágrafo, imagem, link, etc.</p>
-                </article>
-
-                <article class="card">
-                    <div class="card-tag">História</div>
-                    <h3>Como e por quê surgiu o HTML?</h3>
-                    <p>O HTML foi criado no início dos anos 90 por <strong>Tim Berners-Lee</strong>, enquanto trabalhava
-                        no CERN (Organização Europeia para a Pesquisa Nuclear).</p>
-                    <div class="card-list">
-                        <div class="card-list-item">
-                            <span class="list-icon">❓</span>
-                            <span><strong>Por quê?</strong> Cientistas precisavam compartilhar documentos de pesquisa
-                                entre computadores e sistemas diferentes.</span>
+        <!-- Seção do Servidor (Painel Interativo) -->
+        <section class="server-dashboard">
+            <div class="server-grid">
+                
+                <!-- Card de Status e Controle -->
+                <div class="card server-card-status">
+                    <div class="card-tag">Painel de Controle</div>
+                    <div class="status-indicator-wrapper">
+                        <span class="status-dot online" id="status-dot"></span>
+                        <span class="status-text" id="status-text">Servidor Ativo</span>
+                    </div>
+                    
+                    <div class="stats-group">
+                        <div class="stat-item">
+                            <span class="stat-label">Endereço IP</span>
+                            <span class="stat-value" id="server-ip">192.168.1.100</span>
                         </div>
-                        <div class="card-list-item">
-                            <span class="list-icon">💡</span>
-                            <span><strong>Como?</strong> A junção do texto com o "Hipertexto" criou uma teia de
-                                informações interligadas — a World Wide Web.</span>
+                        <div class="stat-item">
+                            <span class="stat-label">Porta Ativa</span>
+                            <span class="stat-value" id="server-port-display">8080</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Uso de CPU</span>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" id="cpu-bar" style="width: 12%"></div>
+                            </div>
+                            <span class="stat-value-sub" id="cpu-text">12%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Uso de Memória</span>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" id="ram-bar" style="width: 42%"></div>
+                            </div>
+                            <span class="stat-value-sub" id="ram-text">42% (2.1 GB / 8 GB)</span>
                         </div>
                     </div>
-                </article>
 
-                <article class="card">
-                    <div class="card-tag">XHTML</div>
-                    <h3>O que é eXtensible Hypertext Markup Language (XHTML)?</h3>
-                    <p>O XHTML é o HTML reescrito seguindo as regras rígidas do XML. Foi uma iniciativa da
-                        <strong>W3C</strong>
-                        para organizar o código da web no início dos anos 2000, exigindo que os desenvolvedores
-                        escrevessem código muito mais limpo e rigoroso.
-                    </p>
-                </article>
+                    <div class="server-actions">
+                        <button class="btn btn-danger" id="btn-toggle-server" onclick="toggleServer()">Desligar</button>
+                        <button class="btn btn-secondary" id="btn-restart-server" onclick="restartServer()">Reiniciar</button>
+                    </div>
+                </div>
 
-                <article class="card">
-                    <div class="card-tag">Diferença</div>
-                    <h3>Qual a diferença de XHTML para HTML?</h3>
-                    <p>A palavra-chave é <strong>rigor</strong>. O HTML tradicional era permissivo — esqueceu de fechar
-                        uma tag? O navegador resolvia. O XHTML não perdoa:</p>
-                    <ul class="styled-list">
-                        <li>Todas as tags devem obrigatoriamente ser fechadas (ex: <code>&lt;br /&gt;</code>).</li>
-                        <li>Tudo deve ser escrito em letras <strong>minúsculas</strong>.</li>
-                        <li>Atributos devem estar sempre entre <strong>aspas</strong>.</li>
-                        <li>A estrutura deve ser perfeitamente <strong>aninhada</strong>.</li>
-                    </ul>
-                </article>
-
-                <article class="card">
-                    <div class="card-tag">XML</div>
-                    <h3>O que é eXtensible Markup Language (XML)?</h3>
-                    <p>O XML é uma linguagem de marcação com objetivo totalmente diferente do HTML. Em vez de
-                        <strong>exibir</strong> informações, ele foi criado para <strong>armazenar e transportar
-                            dados</strong>.
-                        Você mesmo inventa as tags: <code>&lt;aluno&gt;</code>, <code>&lt;nota&gt;</code>,
-                        <code>&lt;curso&gt;</code> — sem regras predefinidas.
-                    </p>
-                </article>
-
-                <article class="card">
-                    <div class="card-tag">Comparativo</div>
-                    <h3>Qual a diferença de HTML para XML?</h3>
-                    <p>A diferença principal está no <strong>foco</strong> de cada linguagem:</p>
-                    <ul class="styled-list">
-                        <li><strong>HTML</strong> — feito para <strong>exibir dados</strong>. Tags fixas como
-                            <code>&lt;div&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;img&gt;</code>.
-                        </li>
-                        <li><strong>XML</strong> — feito para <strong>descrever e transportar dados</strong>. Você
-                            tem liberdade total para criar as próprias tags.</li>
-                    </ul>
-                </article>
-
+                <!-- Console / Terminal Log em Tempo Real -->
+                <div class="card server-card-console">
+                    <div class="card-tag">Log do Terminal</div>
+                    <div class="console-wrapper">
+                        <div class="console-body" id="console-log">
+                            <div class="console-line text-system">[SISTEMA] Inicializando monitoramento do servidor...</div>
+                            <div class="console-line text-info">[INFO] Servidor escutando na porta 8080 (Protocolo HTTP)</div>
+                            <div class="console-line text-info">[INFO] Serviço SSH iniciado na porta 2200</div>
+                            <div class="console-line text-success">[OK] Conexão estabelecida com sucesso.</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-text" onclick="clearLogs()">Limpar console</button>
+                </div>
             </div>
         </section>
 
-        <section class="exercise-block" id="exercicio-3">
+        <!-- Como se Conectar -->
+        <section class="exercise-block" id="como-conectar">
             <header class="exercise-header">
-                <span class="exercise-number">03</span>
+                <span class="exercise-number">⚡</span>
                 <div>
-                    <h2 class="exercise-title">Formulário</h2>
-                    <p class="exercise-desc">Entrada de dados com campos de texto, senha, radio buttons e textarea</p>
+                    <h2 class="exercise-title">Como se Conectar</h2>
+                    <p class="exercise-desc">Instruções e comandos para acessar o ambiente do servidor</p>
                 </div>
             </header>
 
-            <form method="post" action="https://elgio.prof.nom.br/web/le/">
-                <div class="form-group">
-                    <label for="nome">Nome Completo</label>
-                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo">
-                </div>
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail">
-                </div>
-                <div class="form-group">
-                    <label for="senha">Senha</label>
-                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+            <div class="connection-tabs-container">
+                <div class="connection-tabs-nav">
+                    <button class="tab-btn active" onclick="switchTab('ssh')">SSH (Terminal)</button>
+                    <button class="tab-btn" onclick="switchTab('http')">HTTP (Navegador)</button>
+                    <button class="tab-btn" onclick="switchTab('ftp')">FTP (Arquivos)</button>
                 </div>
 
+                <div class="connection-tabs-content card">
+                    <!-- Tab SSH -->
+                    <div class="tab-pane active" id="pane-ssh">
+                        <h3>Conexão Segura via Terminal (SSH)</h3>
+                        <p>Use o cliente SSH do seu sistema operacional para abrir uma sessão de terminal criptografada no servidor.</p>
+                        <div class="code-box">
+                            <code id="code-ssh">ssh admin@192.168.1.100 -p 2200</code>
+                            <button class="btn-copy" onclick="copyText('code-ssh', this)">Copiar</button>
+                        </div>
+                        <ul class="styled-list" style="margin-top: 1rem;">
+                            <li>Certifique-se de que a sua chave SSH está autorizada no servidor.</li>
+                            <li>Senha de acesso temporária enviada ao seu e-mail institucional.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tab HTTP -->
+                    <div class="tab-pane" id="pane-http">
+                        <h3>Acesso Web (HTTP)</h3>
+                        <p>Acesse o servidor diretamente através do seu navegador para visualizar as aplicações web hospedadas.</p>
+                        <div class="code-box">
+                            <code id="code-http">http://192.168.1.100:8080</code>
+                            <button class="btn-copy" onclick="copyText('code-http', this)">Copiar</button>
+                        </div>
+                        <ul class="styled-list" style="margin-top: 1rem;">
+                            <li>Verifique se o serviço web está ativo no painel de controle acima.</li>
+                            <li>Porta padrão HTTP configurada é a 8080.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tab FTP -->
+                    <div class="tab-pane" id="pane-ftp">
+                        <h3>Transferência de Arquivos (SFTP/FTP)</h3>
+                        <p>Conecte-se usando clientes como FileZilla ou WinSCP para enviar e gerenciar arquivos do site.</p>
+                        <div class="code-box">
+                            <code id="code-ftp">sftp://192.168.1.100:2200</code>
+                            <button class="btn-copy" onclick="copyText('code-ftp', this)">Copiar</button>
+                        </div>
+                        <ul class="styled-list" style="margin-top: 1rem;">
+                            <li><strong>Usuário:</strong> <code>admin</code></li>
+                            <li><strong>Caminho raiz:</strong> <code>/var/www/html/page_portifolio</code></li>
+                            <li>Utilize o protocolo seguro SFTP para transferências protegidas.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página/Formulário para Preparar o Servidor -->
+        <section class="exercise-block" id="configurar-servidor">
+            <header class="exercise-header">
+                <span class="exercise-number">⚙</span>
+                <div>
+                    <h2 class="exercise-title">Preparar o Servidor</h2>
+                    <p class="exercise-desc">Ajuste os parâmetros de inicialização e rede do servidor</p>
+                </div>
+            </header>
+
+            <form onsubmit="saveServerConfig(event)" id="server-config-form">
                 <div class="form-group">
-                    <p class="radio-title">Localidade</p>
+                    <label for="server-ip-input">Endereço IP do Servidor</label>
+                    <input type="text" id="server-ip-input" name="server_ip" value="192.168.1.100" placeholder="Ex: 192.168.1.100">
+                </div>
+                <div class="form-group">
+                    <label for="server-port-input">Porta HTTP</label>
+                    <input type="number" id="server-port-input" name="server_port" value="8080" placeholder="Ex: 8080">
+                </div>
+                <div class="form-group">
+                    <label for="server-ssh-port-input">Porta SSH</label>
+                    <input type="number" id="server-ssh-port-input" name="ssh_port" value="2200" placeholder="Ex: 2200">
+                </div>
+                <div class="form-group">
+                    <p class="radio-title">Modo de Operação</p>
                     <div class="radio-group">
                         <div class="radio-option">
-                            <input type="radio" id="poa" name="localidade" value="Porto Alegre">
-                            <label for="poa">Porto Alegre</label>
+                            <input type="radio" id="mode-dev" name="server_mode" value="Desenvolvimento" checked>
+                            <label for="mode-dev">Desenvolvimento (Logs detalhados)</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="canoas" name="localidade" value="Canoas">
-                            <label for="canoas">Canoas</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="gravatai" name="localidade" value="Gravataí">
-                            <label for="gravatai">Gravataí</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="Nova_Santa_Rita" name="localidade" value="Nova Santa Rita">
-                            <label for="Nova_Santa_Rita">Nova Santa Rita</label>
+                            <input type="radio" id="mode-prod" name="server_mode" value="Produção">
+                            <label for="mode-prod">Produção (Otimizado e seguro)</label>
                         </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="mensagem">Mensagem</label>
-                    <textarea id="mensagem" name="mensagem" rows="4" cols="50"
-                        placeholder="Digite sua mensagem"></textarea>
-                </div>
-
-                <button type="submit">Enviar</button>
+                <button type="submit">Salvar Configurações</button>
             </form>
         </section>
 
     </main>
 
+    <!-- ===== FOOTER ===== -->
     <footer class="site-footer">
         <div class="responsive-wrapper">
-            <p>Feito com ❤️ durante o curso de Desenvolvimento Web</p>
+            <p>Feito com ❤️ durante o curso de Desenvolvimento Web &mdash; <strong>Lauren Andreazza</strong></p>
         </div>
     </footer>
 
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // Alternar abas de conexão
+        function switchTab(tabName) {
+            // Remove classe active de todos os botões e abas
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+            
+            // Adiciona classe active no selecionado
+            const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.innerText.toLowerCase().includes(tabName));
+            if (activeBtn) activeBtn.classList.add('active');
+            
+            const activePane = document.getElementById('pane-' + tabName);
+            if (activePane) activePane.classList.add('active');
+            
+            logToConsole(`[INTERAÇÃO] Alternado para aba de conexão: ${tabName.toUpperCase()}`, 'info');
+        }
+
+        // Copiar texto para a área de transferência
+        function copyText(elementId, btnElement) {
+            const codeText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                const originalText = btnElement.innerText;
+                btnElement.innerText = "Copiado!";
+                btnElement.style.background = "var(--color-accent)";
+                btnElement.style.color = "#fff";
+                
+                logToConsole(`[INTERAÇÃO] Comando copiado: "${codeText}"`, 'success');
+                
+                setTimeout(() => {
+                    btnElement.innerText = originalText;
+                    btnElement.style.background = "";
+                    btnElement.style.color = "";
+                }, 1500);
+            }).catch(err => {
+                logToConsole('[ERRO] Falha ao copiar comando.', 'error');
+            });
+        }
+
+        // Adiciona linha no console
+        function logToConsole(message, type = 'system') {
+            const consoleLog = document.getElementById('console-log');
+            if (!consoleLog) return;
+            
+            const line = document.createElement('div');
+            line.className = 'console-line';
+            
+            const now = new Date();
+            const timeStr = `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}]`;
+            
+            if (type === 'error') {
+                line.className += ' text-error';
+                line.innerText = `${timeStr} [ERRO] ${message}`;
+            } else if (type === 'success') {
+                line.className += ' text-success';
+                line.innerText = `${timeStr} [OK] ${message}`;
+            } else if (type === 'info') {
+                line.className += ' text-info';
+                line.innerText = `${timeStr} ${message}`;
+            } else {
+                line.className += ' text-system';
+                line.innerText = `${timeStr} ${message}`;
+            }
+            
+            consoleLog.appendChild(line);
+            consoleLog.scrollTop = consoleLog.scrollHeight;
+        }
+
+        // Limpar logs
+        function clearLogs() {
+            const consoleLog = document.getElementById('console-log');
+            if (consoleLog) {
+                consoleLog.innerHTML = '<div class="console-line text-system">[SISTEMA] Console de logs limpo pelo usuário.</div>';
+            }
+        }
+
+        // Variável de controle do estado do servidor
+        let isServerOnline = true;
+        let statsInterval = null;
+
+        // Alternar estado Ligar/Desligar
+        function toggleServer() {
+            isServerOnline = !isServerOnline;
+            const dot = document.getElementById('status-dot');
+            const text = document.getElementById('status-text');
+            const btn = document.getElementById('btn-toggle-server');
+            
+            if (isServerOnline) {
+                dot.className = "status-dot online";
+                text.innerText = "Servidor Ativo";
+                btn.innerText = "Desligar";
+                btn.className = "btn btn-danger";
+                logToConsole("[SISTEMA] Servidor foi iniciado com sucesso.", "success");
+                startMetricsSimulation();
+            } else {
+                dot.className = "status-dot offline";
+                text.innerText = "Servidor Inativo";
+                btn.innerText = "Ligar";
+                btn.className = "btn btn-success";
+                logToConsole("[SISTEMA] Servidor foi desligado e todos os serviços parados.", "error");
+                stopMetricsSimulation();
+                
+                // Zera as barras
+                document.getElementById('cpu-bar').style.width = '0%';
+                document.getElementById('cpu-text').innerText = '0%';
+                document.getElementById('ram-bar').style.width = '0%';
+                document.getElementById('ram-text').innerText = '0% (Inativo)';
+            }
+        }
+
+        // Reiniciar Servidor
+        function restartServer() {
+            logToConsole("[SISTEMA] Reinicializando o servidor...", "system");
+            const dot = document.getElementById('status-dot');
+            const text = document.getElementById('status-text');
+            
+            dot.className = "status-dot offline";
+            text.innerText = "Reiniciando...";
+            
+            // Simula reinicialização
+            setTimeout(() => {
+                if (isServerOnline) {
+                    dot.className = "status-dot online";
+                    text.innerText = "Servidor Ativo";
+                    logToConsole("[SISTEMA] Servidor reiniciado e pronto para receber conexões.", "success");
+                } else {
+                    logToConsole("[SISTEMA] O servidor está offline. Ligue-o para iniciar.", "info");
+                }
+            }, 1000);
+        }
+
+        // Simulação de uso de recursos
+        function startMetricsSimulation() {
+            if (statsInterval) clearInterval(statsInterval);
+            statsInterval = setInterval(() => {
+                if (!isServerOnline) return;
+                
+                // Gera CPU e RAM aleatórios
+                const cpuVal = Math.floor(Math.random() * 30) + 5; // 5% a 35%
+                const ramVal = Math.floor(Math.random() * 15) + 35; // 35% a 50%
+                
+                document.getElementById('cpu-bar').style.width = cpuVal + '%';
+                document.getElementById('cpu-text').innerText = cpuVal + '%';
+                
+                document.getElementById('ram-bar').style.width = ramVal + '%';
+                const ramGB = ((ramVal / 100) * 8).toFixed(1);
+                document.getElementById('ram-text').innerText = `${ramVal}% (${ramGB} GB / 8 GB)`;
+                
+                // Ocasionalmente loga um acesso simulado
+                if (Math.random() > 0.8) {
+                    const randomIP = `192.168.1.${Math.floor(Math.random() * 200) + 2}`;
+                    logToConsole(`[NGINX] GET / HTTP/1.1 de ${randomIP} - Status 200`, 'info');
+                }
+            }, 3000);
+        }
+
+        function stopMetricsSimulation() {
+            if (statsInterval) {
+                clearInterval(statsInterval);
+                statsInterval = null;
+            }
+        }
+
+        // Salvar configuração do formulário
+        function saveServerConfig(event) {
+            event.preventDefault();
+            
+            const ip = document.getElementById('server-ip-input').value;
+            const port = document.getElementById('server-port-input').value;
+            const sshPort = document.getElementById('server-ssh-port-input').value;
+            const mode = document.querySelector('input[name="server_mode"]:checked').value;
+            
+            // Atualiza os displays do painel
+            document.getElementById('server-ip').innerText = ip;
+            document.getElementById('server-port-display').innerText = port;
+            
+            // Atualiza os comandos
+            document.getElementById('code-ssh').innerText = `ssh admin@${ip} -p ${sshPort}`;
+            document.getElementById('code-http').innerText = `http://${ip}:${port}`;
+            document.getElementById('code-ftp').innerText = `sftp://${ip}:${sshPort}`;
+            
+            logToConsole(`[CONFIG] Parâmetros alterados! Novo IP: ${ip}, Porta HTTP: ${port}, Porta SSH: ${sshPort}, Modo: ${mode}`, 'success');
+            logToConsole(`[CONFIG] Aplicando modificações e reiniciando nginx...`, 'system');
+            
+            if (isServerOnline) {
+                restartServer();
+            }
+        }
+
+        // Inicia simulação na primeira carga
+        startMetricsSimulation();
+    </script>
 </body>
 
 </html>
